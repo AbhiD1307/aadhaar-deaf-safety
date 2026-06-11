@@ -70,20 +70,20 @@ Aadhaar turns any emergency into instant visual and tactile alerts so **430 mill
 │                                                                     │
 │  Fire Sensor · CO Detector · Mic Array · Motion PIR · Doorbell      │
 │       ↓                                                             │
-│  Hardware threshold check  →  MQTT publish (TLS 1.3)               │
+│  Hardware threshold check  →  MQTT publish (TLS 1.3)                │
 │  HMAC-SHA256 sign + seq#                                            │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
 ┌───────────────────────────────▼─────────────────────────────────────┐
 │  SECURE BACKEND  (Zero-trust enforced)                              │
 │                                                                     │
-│  ┌──────────────┐    ┌────────────────┐    ┌───────────────────┐   │
-│  │ Aedes MQTT   │ →  │ Gemini 1.5     │ →  │ Event Router      │   │
-│  │ Broker       │    │ AI Classifier  │    │ Fan-out logic     │   │
-│  │ HMAC verify  │    │ Risk scoring   │    │ Priority queue    │   │
-│  │ Seq# replay  │    │ Confidence %   │    │ Auth0 policy      │   │
-│  │ protection   │    │                │    │                   │   │
-│  └──────────────┘    └────────────────┘    └─────────┬─────────┘   │
+│  ┌──────────────┐    ┌────────────────┐    ┌───────────────────┐    │
+│  │ Aedes MQTT   │ →  │ Gemini 1.5     │ →  │ Event Router      │    │
+│  │ Broker       │    │ AI Classifier  │    │ Fan-out logic     │    │
+│  │ HMAC verify  │    │ Risk scoring   │    │ Priority queue    │    │
+│  │ Seq# replay  │    │ Confidence %   │    │ Auth0 policy      │    │
+│  │ protection   │    │                │    │                   │    │
+│  └──────────────┘    └────────────────┘    └──────-───┬────────┘    │
 │                                                       │             │
 │  Auth0/JWT/RBAC · Data Store · Audit Log · Rate Limit │             │
 └───────────────────────────────────────────────────────┼─────────────┘
@@ -526,23 +526,23 @@ This fires random sensor events every 5–15 seconds, filling up the dashboard w
 Open **4 terminal windows** side by side:
 
 ```
-┌─────────────────────┐  ┌─────────────────────┐
+┌─────────────────────┐  ┌────────────────────-─┐
 │  Terminal 1         │  │  Terminal 2          │
 │  cd backend         │  │  cd web              │
 │  npm run dev        │  │  npm run dev         │
 │                     │  │                      │
 │  → port 3000        │  │  → http://localhost: │
 │  → port 1883        │  │    3001              │
-└─────────────────────┘  └─────────────────────┘
+└─────────────────────┘  └─────────────────────-┘
 
-┌─────────────────────┐  ┌─────────────────────┐
+┌─────────────────────┐  ┌────────────────────-─┐
 │  Terminal 3         │  │  Terminal 4          │
 │  cd mobile          │  │  cd sensor-simulator │
 │  npx expo start     │  │  npm run fire        │
 │                     │  │                      │
 │  → scan QR code     │  │  → triggers alerts   │
 │    with Expo Go     │  │    in real time      │
-└─────────────────────┘  └─────────────────────┘
+└─────────────────────┘  └────────────────────-─┘
 ```
 
 **Full end-to-end test sequence:**
@@ -1076,7 +1076,6 @@ Open both files and confirm the secrets are identical character-for-character (n
 ## Contact
 
 **Abhishek Deshmukh**  
-Email: deshmukh.abhishek152@gmail.com  
 Event: UW Bothell Hackathon — Winner
 
 *"Aadhaar was built to solve a real human problem — not just to build impressive technology. For 430 million people who cannot hear emergencies, this is the missing safety layer."*

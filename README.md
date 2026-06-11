@@ -6,7 +6,6 @@
 Aadhaar turns any emergency into instant visual and tactile alerts so **430 million deaf and hard-of-hearing people** never miss a danger they cannot hear. It unifies AI-powered event detection, multi-channel alerting, smart-home control, and emergency dispatch into one fully accessible platform.
 
 **Creator:** Abhishek Deshmukh  
-**Email:** deshmukh.abhishek152@gmail.com  
 **Event:** UW Bothell Hackathon — Winner  
 **Live site:** aadhaar.deaf.com (sample domain)
 

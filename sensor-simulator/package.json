@@ -1,0 +1,17 @@
+{
+  "name": "aadhar-sensor-simulator",
+  "version": "1.0.0",
+  "description": "IoT sensor simulator for Aadhar — publishes MQTT events with HMAC signing",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "fire": "node src/index.js --event fire_alarm",
+    "co": "node src/index.js --event co_alarm",
+    "motion": "node src/index.js --event motion",
+    "doorbell": "node src/index.js --event doorbell"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mqtt": "^5.7.3"
+  }
+}
